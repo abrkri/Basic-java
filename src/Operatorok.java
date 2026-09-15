@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Scanner;
 
-public class Operator {
+public class Operatorok {
     static void main() {
         // 2.
         Scanner sc = new Scanner(System.in);
@@ -26,6 +26,5 @@ public class Operator {
         double szoroz = int2 * d2;
 
         IO.println("\n" + egyben + "\n" + oszt + "\n" + osszead + "\n" + kivon + "\n" + szoroz);
-
     }
 }
