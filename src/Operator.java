@@ -26,5 +26,6 @@ public class Operator {
         double szoroz = int2 * d2;
 
         IO.println("\n" + egyben + "\n" + oszt + "\n" + osszead + "\n" + kivon + "\n" + szoroz);
+
     }
 }
