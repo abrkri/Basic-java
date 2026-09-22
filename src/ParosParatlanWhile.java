@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class ParosParatlanWhile {
     static void main() {
+
         Scanner sc = new Scanner(System.in);
         int sz = -1;
         do {
