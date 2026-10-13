@@ -59,10 +59,12 @@ public class Overloading {
 
         int [] arrtostring1 = {1, 2, 3};
         double [] arrtostring2 = {1.2, 3.4, 5.6};
-        String [] arrtostring3 = {"a", "b", "c"};
+        boolean [] arrtostring3 = {true, false, true};
+        String [] arrtostring4 = {"a", "b", "c"};
 
         IO.println(ConvertToString(arrtostring1));
         IO.println(ConvertToString(arrtostring2));
         IO.println(ConvertToString(arrtostring3));
+        IO.println(ConvertToString(arrtostring4));
     }
 }
