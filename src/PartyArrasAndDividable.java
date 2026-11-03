@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,40 +13,64 @@ public class PartyArrasAndDividable {
     }
 
     public static int[] add(int[] arr, int num) {
-        int [] arrmerged = new int [arr.length + 1];
-        int [] newarr = {num};
-
-        boolean voltnulla = false;
-        if (arr.length > 0) {
-            for (int i = 0; i < arr.length; i ++) {
-                if (arr[i] == 0) {
-                    arr[i] = num;
-                    voltnulla = true;
-                    break;
-                }
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == 0) {
+                int[] result = arr.clone();
+                result[i] = num;
+                return result;
             }
         }
-        else {
-            System.arraycopy(arr, 0, arrmerged, 0, arr.length);
-            System.arraycopy(newarr, 0, arrmerged, arr.length, 1);
-        }
-        return arrmerged;
+
+        int[] result = Arrays.copyOf(arr, arr.length + 1);
+        result[arr.length] = num;
+        return result;
     }
 
     public static int[] insert(int[] arr, int index, int num) {
+        int ind = 0;
+        int[] result = new int[arr.length + 1];
+        for (int i = 0; i < arr.length; i ++) {
+            if (i == index) {
+                result[ind] = num;
+                ind++;
+            }
+            result[ind] = arr[i];
+            ind++;
+        }
         return arr;
     }
 
     public static int[] remove(int[] arr, int num) {
-        return arr;
+        int [] result = new int[arr.length - 1];
+        int ind = 0;
+        for (int i = 0; i < arr.length; i ++) {
+            if (arr[i] != num) {
+                result[ind] = arr[i];
+                ind++;
+            }
+
+        }
+        return result;
     }
 
     public static int[] pop(int[] arr, int index) {
-        return arr;
+        int [] result = new int[arr.length - 1];
+        int ind = 0;
+        for (int i = 0; i < arr.length; i ++) {
+            if (i == index) {
+                continue;
+            }
+            result[ind] = arr[i];
+            ind++;
+        }
+        return result;
     }
 
-    public static int[] dividable() {
-
+    public static int dividable(int num, int fizz, int buzz) {
+        if (num % fizz == 0 && num % buzz == 0) return fizz * buzz;
+        else if (num % fizz == 0) return fizz;
+        else if (num % buzz == 0) return  buzz;
+        else return -1;
     }
 
 
