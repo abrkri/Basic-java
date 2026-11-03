@@ -37,16 +37,18 @@ public class PartyArrasAndDividable {
             result[ind] = arr[i];
             ind++;
         }
-        return arr;
+        return result;
     }
 
     public static int[] remove(int[] arr, int num) {
-        int [] result = new int[arr.length - 1];
+        int[] result = new int[arr.length - 1];
         int ind = 0;
-        for (int i = 0; i < arr.length; i ++) {
-            if (arr[i] != num) {
+        boolean isRemoved = false;
+        for (int i = 0; i < arr.length; i++) {
+            if (!isRemoved && arr[i] != num) {
                 result[ind] = arr[i];
                 ind++;
+                isRemoved = true;
             }
 
         }
