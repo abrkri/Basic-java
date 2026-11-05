@@ -4,10 +4,10 @@ import java.util.List;
 
 public class PartyArrasAndDividable {
 
-    public static String partyValidation(int boy, int girl) {
+    public static String partyValidation(int girl, int boy) {
         if (boy == girl && boy + girl >= 20) return "The party is excellent!";
-        else if (boy + girl >= 20 && boy > girl || girl > boy) return "Quite a cool party!";
         else if (girl == 0) return "Sausage party";
+        else if (boy + girl >= 20 && boy != girl) return "Quite a cool party!";
         else return  "Average party...";
 
     }
@@ -27,41 +27,54 @@ public class PartyArrasAndDividable {
     }
 
     public static int[] insert(int[] arr, int index, int num) {
-        int ind = 0;
-        int[] result = new int[arr.length + 1];
-        for (int i = 0; i < arr.length; i ++) {
-            if (i == index) {
-                result[ind] = num;
-                ind++;
+        if (index >= arr.length) {
+            int[] result = new int[arr.length + 1];
+            for (int i = 0; i < arr.length; i++) result[i] = arr[i];
+            result[arr.length] = num;
+            return result;
+        }
+
+        int[] result = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i == index) result[i] = num;
+            else result[i] = arr[i];
+        }
+        return result;
+    }
+
+    public static int[] remove(int[] arr, int num) {
+        int index = -1;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == num) {
+                index = i;
+                break;
             }
+        }
+
+        if (index == -1) return arr;
+
+        int[] result = new int[arr.length - 1];
+        int ind = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i == index) continue;
             result[ind] = arr[i];
             ind++;
         }
         return result;
     }
 
-    public static int[] remove(int[] arr, int num) {
+    public static int[] pop(int[] arr, int index) {
+        if (arr.length == 0) return arr;
+        if (index == arr.length) index--;
+        if (index < 0 || index >= arr.length) return arr;
+
         int[] result = new int[arr.length - 1];
         int ind = 0;
-        boolean isRemoved = false;
         for (int i = 0; i < arr.length; i++) {
-            if (!isRemoved && arr[i] != num) {
-                result[ind] = arr[i];
-                ind++;
-                isRemoved = true;
-            }
-
-        }
-        return result;
-    }
-
-    public static int[] pop(int[] arr, int index) {
-        int [] result = new int[arr.length - 1];
-        int ind = 0;
-        for (int i = 0; i < arr.length; i ++) {
-            if (i == index) {
-                continue;
-            }
+            if (i == index) continue;
             result[ind] = arr[i];
             ind++;
         }
@@ -84,16 +97,20 @@ public class PartyArrasAndDividable {
         System.out.println(partyValidation(9, 10).equals("Average party..."));
         System.out.println(partyValidation(0, 25).equals("Sausage party"));
         System.out.println("Arrays");
+        System.out.println("Add");
         System.out.println(Arrays.toString(add(new int[] {1,2,0,4,5}, 3)).equals("[1, 2, 3, 4, 5]"));
         System.out.println(Arrays.toString(add(new int[] {1,0,0,4,5}, 3)).equals("[1, 3, 0, 4, 5]"));
         System.out.println(Arrays.toString(add(new int[] {}, 3)).equals("[3]"));
         System.out.println(Arrays.toString(add(new int[] {1,2,3,4,5}, 6)).equals("[1, 2, 3, 4, 5, 6]"));
+        System.out.println("Insert");
         System.out.println(Arrays.toString(insert(new int[] {1,2,3,4,5}, 0, 6)).equals("[6, 2, 3, 4, 5]"));
         System.out.println(Arrays.toString(insert(new int[] {1,2,3,4,5}, 2, 6)).equals("[1, 2, 6, 4, 5]"));
         System.out.println(Arrays.toString(insert(new int[] {1,2,3,4,5}, 6, 2)).equals("[1, 2, 3, 4, 5, 2]"));
+        System.out.println("Remove");
         System.out.println(Arrays.toString(remove(new int[] {1,2,3,2,1}, 5)).equals("[1, 2, 3, 2, 1]"));
         System.out.println(Arrays.toString(remove(new int[] {1,2,3,2,1}, 2)).equals("[1, 3, 2, 1]"));
         System.out.println(Arrays.toString(remove(new int[] {1,2,3,2,1}, 3)).equals("[1, 2, 2, 1]"));
+        System.out.println("Pop");
         System.out.println(Arrays.toString(pop(new int[] {1,2,3,4,5}, 5)).equals("[1, 2, 3, 4]"));
         System.out.println(Arrays.toString(pop(new int[] {1,2,3,4,5}, 3)).equals("[1, 2, 3, 5]"));
         System.out.println(Arrays.toString(pop(new int[] {}, 5)).equals("[]"));
