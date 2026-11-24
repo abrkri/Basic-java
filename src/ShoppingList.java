@@ -8,7 +8,7 @@ public class ShoppingList {
         System.out.println(hasItem(items, "milk"));
         System.out.println(hasItem(items, "bananas"));
     }
-    public static String hasItem(LinkedList<String> list, String item) {
+    public static String hasItem(List<String> list, String item) {
         return list.contains(item) ? "yes" : "no";
     }
 }
